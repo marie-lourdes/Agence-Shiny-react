@@ -1,6 +1,8 @@
+import { useState, useEffect } from 'react'
 import Card from '../../components/Card'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
+import { Loader } from '../../utils/style/Atoms'
 
 const CardsContainer = styled.div`
   display: grid;
@@ -42,22 +44,49 @@ const freelanceProfiles = [
 ]
 
 function Freelances() {
+  const [profilData, setProfilData] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [errors, setError] = useState(null)
+
+  useEffect(() => {
+    setIsLoading(true)
+    fetch("http://localhost:8000/freelances")
+      .then((res) => {
+        console.log("reponse", res)
+        return res.json()
+      })
+      .then(({ freelancersList }) => {
+        console.log("profilData", freelancersList)
+        setProfilData(freelancersList)
+        setIsLoading(false)
+      })
+      .catch((error) => {
+        console.log("erreur requete", error)
+        setError(true)
+      })
+  }, [])
+  if (errors) return <div className="error"> Une erreur est survenue</div>
   return (
+
     <div>
       <PageTitle>Trouvez votre prestataire</PageTitle>
       <PageSubtitle>
         Chez Shiny nous réunissons les meilleurs profils pour vous.
       </PageSubtitle>
-      <CardsContainer>
-        {freelanceProfiles.map((profile, index) => (
-          <Card
-            key={`${profile.name}-${index}`}
-            label={profile.jobTitle}
-            title={profile.name}
-          />
-        ))}
-      </CardsContainer>
+      {isLoading ? <Loader /> :
+        <CardsContainer>
+          {profilData.map((profile) => (
+            <Card
+              key={`${profile.id}`}
+              label={profile.job}
+              title={profile.name}
+              picture={profile.picture}
+            />
+          ))}
+        </CardsContainer>
+      }
     </div>
+
   )
 }
 
