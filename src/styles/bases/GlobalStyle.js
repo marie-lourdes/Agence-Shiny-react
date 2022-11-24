@@ -28,6 +28,10 @@ const GlobalStyle = createGlobalStyle`
     }
     h1 {
       font-size: 32px;
+     text-align: center;
+     margin-bottom: 10px;
+     font-weight: 900;
+     color: #5843e4;
     }
       
    

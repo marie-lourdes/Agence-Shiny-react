@@ -53,7 +53,7 @@ function Freelances() {
 
     return (<React.Fragment>
         <section>
-            <h1>Freelances 🧑‍💻 🧑‍💻 🧑‍💻</h1>
+            <h1>Freelances </h1>
 
             <PageTitle>Trouvez votre prestataire</PageTitle>
             <PageSubtitle>
