@@ -21,6 +21,11 @@ const GlobalStyle = createGlobalStyle`
         flex-direction: column; 
 
     }
+    div.error {
+      font-weight: bold;
+      margin: 20% auto 0;
+      font-size: 24px;
+    }
     h1 {
       font-size: 32px;
     }

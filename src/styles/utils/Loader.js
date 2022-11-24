@@ -32,6 +32,10 @@ export const Loader = styled.div`
     position: relative; 
     height:0px;
     width: 0px;
+    margin: 0 auto;
+    &.loader-freelances {
+        padding: 30px;
+    }
    ${Spinner} {
         position: absolute;       
         animation: ${rotateSpinner} 1000ms infinite ease-out;  
