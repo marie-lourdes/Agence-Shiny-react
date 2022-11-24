@@ -27,7 +27,7 @@ const rotateSpinner = keyframes`
 export const Spinner = styled.div`  
 `
 export const Loader = styled.div` 
-    padding: 15px;
+    padding: 16px;
     animation: ${opacity} 4000ms -2000ms infinite linear;
     position: relative; 
     height:0px;
