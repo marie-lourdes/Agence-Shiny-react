@@ -37,7 +37,7 @@ export const Spinner = styled.div`
 export const Loader = styled.div`
 
     
-    padding: 15px;
+    padding: 16px;
   
     animation: ${opacity} 4000ms -2000ms infinite linear;
     position: relative;
@@ -58,7 +58,7 @@ export const Loader = styled.div`
 
         
         &.spinner1 {
-            border: 6px solid #8932BA ;
+            border: 8px solid #8932BA ;
             border-top-color ${colors.primary};
            
            
@@ -66,21 +66,21 @@ export const Loader = styled.div`
 
         &.spinner2 {
            
-            border-right: 6px solid ${colors.primary};  
+            border-right: 8px solid ${colors.primary};  
           
             animation-delay: 250ms;
             
         }
 
         &.spinner3 {
-            border-bottom: 6px solid ${colors.primary};  
+            border-bottom: 8px solid ${colors.primary};  
         
             animation-delay: 500ms;
          
         }
 
         &.spinner4 {
-            border-left: 6px solid ${colors.primary};  
+            border-left: 8px solid ${colors.primary};  
      
             animation-delay: 750ms;
            
