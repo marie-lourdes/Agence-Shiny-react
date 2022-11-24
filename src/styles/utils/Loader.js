@@ -4,7 +4,7 @@ import { keyframes } from 'styled-components'
 
 const opacity = keyframes`
     from {
-       opacity: 0.4;
+       opacity: 0.5;
        
     }
  
