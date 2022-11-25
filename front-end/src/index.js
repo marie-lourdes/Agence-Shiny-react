@@ -1,6 +1,7 @@
 import React from 'react'
 import * as ReactDOM from 'react-dom/client'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+
 import App from "./App.js"
 
 import Home from './pages/Home'
@@ -11,6 +12,7 @@ import Freelances from './pages/Freelances'
 import Header from './layouts/Header'
 import Footer from './layouts/Footer'
 import Error from "./components/Error"
+
 import reportWebVitals from './reportWebVitals'
 
 // IMPORT DU STYLE DE BASE SUR TOUTES LES ROUTES ET CONTENU DES PAGES ET COMPOSANTS
@@ -22,9 +24,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <App >
-      {/* children*/}
-      <Router>
+    <Router>
+      <App >
+        {/* children*/}
         <GlobalStyle /> {/*style globale appliqué a toutes les routes et a toutes le contenu des pages et composants*/}
         <Header />
         <main>
@@ -36,12 +38,13 @@ c'est a dire que home ne doit pas s afficher dans le path du composant Survey qu
             <Route path="/admin/*" element={<Admin />} />{ /* permet d acceder a la sous route/*" */}
             <Route path="/results" element={<Results />} />
             <Route path="/freelances" element={<Freelances />} />
-            <Route element={<Error />} />
+            <Route path="*" element={<Error />} />{/* on precise un path dans la "Routes" en dernier  contrairement a l utilisation de switch de la v6*/}
           </Routes >
         </main>
         <Footer />
-      </Router>
-    </App>
+
+      </App>
+    </Router>
   </React.StrictMode>
 );
 
