@@ -1,7 +1,7 @@
 //import du styled de styled-components pour les composant style CSS in JS
 import styled from "styled-components"
 // import utils colors
-import colors from "../utils/color.js"
+import colors from "../../utils/color.js"
 //.........................................CREATION DES COMPOSANT STYLED..............................................................
 
 //les composant styled sont ecrit en Pascale Case comme les composant react

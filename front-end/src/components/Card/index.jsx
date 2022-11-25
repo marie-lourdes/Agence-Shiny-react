@@ -2,7 +2,7 @@
 // import de PROPTYPES pour les props Card 
 import PropTypes from "prop-types"
 //import du styled component
-import { CardWrapper, CardImage, CardLabel } from "../../styles/components/Card.js"
+import { CardWrapper, CardImage, CardLabel } from "./Card.js"
 
 // import des profils et de l image par defaut de picture
 import defaultPictures from "../../assets/profil.png"

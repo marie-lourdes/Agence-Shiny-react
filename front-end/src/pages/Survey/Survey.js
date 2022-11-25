@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import colors from "../utils/color.js"
+import colors from "../../utils/color.js"
 
 const SurveyContainer = styled.div`
   display: flex;
