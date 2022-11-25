@@ -33,7 +33,7 @@ c'est a dire que home ne doit pas s afficher dans le path du composant Survey qu
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route path="/survey/:questionNumber" element={<Survey />} />
-            <Route path="/admin" element={<Admin />} />
+            <Route path="/admin/*" element={<Admin />} />{ /* permet d acceder a la sous route/*" */}
             <Route path="/results" element={<Results />} />
             <Route path="/freelances" element={<Freelances />} />
             <Route element={<Error />} />
