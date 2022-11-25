@@ -2,7 +2,7 @@ import { useState } from "react"
 
 import HomeIllustration from '../../assets/home-illustration.svg'
 //import du styled component
-import { HomeWrapper, HomeContainer, LeftCol, StyledTitle, Illustration, Ballon } from "../../styles/pages/Home.js"
+import { HomeWrapper, HomeContainer, LeftCol, StyledTitle, Illustration, Ballon } from "./Home.js"
 import { StyledLink } from "../../styles/components/atoms/Link.js"
 
 function Home() {

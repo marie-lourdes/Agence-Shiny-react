@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { StyledLink } from "../../styles/components/atoms/Link.js"
-import colors from "../utils/color.js"
+import colors from "../../utils/color.js"
 
 const HomeWrapper = styled.section`
     width: 100%;

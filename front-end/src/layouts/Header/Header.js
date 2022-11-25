@@ -1,4 +1,3 @@
-
 import styled from "styled-components"
 
 const HomeLogo = styled.img`

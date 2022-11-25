@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import DarkLogo from '../../assets/dark-logo.png'
 
 //import du styled component
-import { StyledHeader, HomeLogo } from "../../styles/layouts/Header.js"
+import { StyledHeader, HomeLogo } from "./Header.js"
 import { StyledLink } from "../../styles/components/atoms/Link.js"
 
 function Header() {

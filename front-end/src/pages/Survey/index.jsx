@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom"
 import { useState, useEffect } from 'react'
 import { SurveyContainer, QuestionTitle, QuestionContent, LinkWrapper } from "../../styles/pages/Survey"
-import { Loader, Spinner } from "../../styles/utils/Loader"
+import { Loader, Spinner } from "../../utils/Loader"
 
 
 function Survey() {

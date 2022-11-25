@@ -8,11 +8,12 @@ import Admin from './pages/Admin'
 import Results from './pages/Results'
 import Freelances from './pages/Freelances'
 import Header from './layouts/Header'
+import Footer from './layouts/Footer'
 import Error from "./components/Error"
 import reportWebVitals from './reportWebVitals'
 
 // IMPORT DU STYLE DE BASE SUR TOUTES LES ROUTES ET CONTENU DES PAGES ET COMPOSANTS
-import GlobalStyle from './styles/bases/GlobalStyle'
+import GlobalStyle from './bases/GlobalStyle'
 
 //ReactDOM v18 ne supporte plus ReactDOM.render, il faut createRoot et root.render
 //const root = ReactDOM.createRoot(document.getElementById('root'))
@@ -48,6 +49,7 @@ ReactDOM.render(
 
         </Switch>
       </main>
+      <Footer />
     </Router>
   </React.StrictMode >,
   document.getElementById('root')

@@ -2,7 +2,7 @@
 import React from "react"
 import { useState, useEffect } from 'react'
 import Card from "../../components/Card"
-import { Loader, Spinner } from "../../styles/utils/Loader"
+import { Loader, Spinner } from "../../utils/Loader"
 
 //import du styled component
 import { CardContainer, PageSubtitle, PageTitle } from "../../styles/pages/Freelances"

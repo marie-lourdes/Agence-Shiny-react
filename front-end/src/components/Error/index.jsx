@@ -1,7 +1,7 @@
 import illustration404 from "../../assets/404.svg"
 
 //import styled components
-import { ErrorWrapper, ErrorTitle, ErrorSubtitle, Illustration } from "../../styles/components/Error.js"
+import { ErrorWrapper, ErrorTitle, ErrorSubtitle, Illustration } from "./Error.js"
 
 function Error() {
     return (
