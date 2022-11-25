@@ -3,7 +3,7 @@ import { useState } from "react"
 import HomeIllustration from '../../assets/home-illustration.svg'
 //import du styled component
 import { HomeWrapper, HomeContainer, LeftCol, StyledTitle, Illustration, Ballon } from "./Home.js"
-import { StyledLink } from "../../atoms/Link.js"
+import { StyledLink } from "../../bases-styled/atoms/Link.js"
 
 function Home() {
     const [scaleAnim, setScaleAnim] = useState(0.5)// etat initia du scale

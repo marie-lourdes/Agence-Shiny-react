@@ -7,7 +7,7 @@ import { Loader, Spinner } from "../../utils/Loader"
 //import du styled component
 import { CardContainer, PageSubtitle, PageTitle } from "./Freelances.js"
 
-// definition d une liste de données de profils
+/* definition d une liste de données de profils
 const freelanceProfiles = [
     {
         name: "Jane Doe",
@@ -24,7 +24,7 @@ const freelanceProfiles = [
         jobTitle: "Développeuse Fullstack",
 
     },
-]
+] */
 
 function Freelances() {
 
