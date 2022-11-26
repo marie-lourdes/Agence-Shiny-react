@@ -15,7 +15,7 @@ function Admin() {
             </ul>
             <Routes>
                 <Route exact path="/users" element={<Users />} />
-                <Route path="*" element={<Error />} />
+                <Route path="users/*" element={<Error />} />
             </Routes>
 
         </section>
