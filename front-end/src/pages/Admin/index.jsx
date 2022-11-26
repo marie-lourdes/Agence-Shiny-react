@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Routes, Link, useResolvedPath } from 'react-router-dom'
 import Users from "./component/User"
+import Error from "../../components/Error"
 function Admin() {
     // useRouteMach hook qui n est plus accessible dans react-router dom v6, ni switch
     // renvoit le path actuel du composant Home
@@ -13,8 +14,10 @@ function Admin() {
                 <li><Link to={`${path}/users`}>Utilisateurs</Link></li>
             </ul>
             <Routes>
-                <Route path="/users" element={<Users />} />
+                <Route exact path="/users" element={<Users />} />
+                <Route path="*" element={<Error />} />
             </Routes>
+
         </section>
     </React.Fragment >
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import * as ReactDOM from 'react-dom/client'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import reportWebVitals from './reportWebVitals'
 
 import App from "./App.js"
 
@@ -13,10 +14,13 @@ import Header from './layouts/Header'
 import Footer from './layouts/Footer'
 import Error from "./components/Error"
 
-import reportWebVitals from './reportWebVitals'
+//import du themeProvider au plus haut niveau de l application
+import { ThemeProvider } from './utils/Context'
+
+
 
 // IMPORT DU STYLE DE BASE SUR TOUTES LES ROUTES ET CONTENU DES PAGES ET COMPOSANTS
-import GlobalStyle from './bases-styled/GlobalStyle'
+import GlobalStyle from './bases/GlobalStyle'
 
 //ReactDOM v18 ne supporte plus ReactDOM.render, il faut createRoot et root.render
 //const root = ReactDOM.createRoot(document.getElementById('root'))
@@ -27,22 +31,23 @@ root.render(
     <Router>
       <App >
         {/* children*/}
-        <GlobalStyle /> {/*style globale appliqué a toutes les routes et a toutes le contenu des pages et composants*/}
-        <Header />
-        <main>
-          {/*Ajouter la prop exact pour que home s affiche sur ce path exactement et non sur un path contenant "/" , 
+        <ThemeProvider>
+          <GlobalStyle /> {/*style globale appliqué a toutes les routes et a toutes le contenu des pages et composants*/}
+          <Header />
+          <main>
+            {/*Ajouter la prop exact pour que home s affiche sur ce path exactement et non sur un path contenant "/" , 
 c'est a dire que home ne doit pas s afficher dans le path du composant Survey qui commence par "/"*/}
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route path="/survey/:questionNumber" element={<Survey />} />
-            <Route path="/admin/*" element={<Admin />} />{ /* permet d acceder a la sous route/*" */}
-            <Route path="/results" element={<Results />} />
-            <Route path="/freelances" element={<Freelances />} />
-            <Route path="*" element={<Error />} />{/* on precise un path dans la "Routes" en dernier  contrairement a l utilisation de switch de la v6*/}
-          </Routes >
-        </main>
-        <Footer />
-
+            <Routes>
+              <Route exact path="/" element={<Home />} />
+              <Route path="/survey/:questionNumber" element={<Survey />} />
+              <Route path="/admin/*" element={<Admin />} />{ /* permet d acceder a la sous route/*" */}
+              <Route path="/results" element={<Results />} />
+              <Route path="/freelances" element={<Freelances />} />
+              <Route path="*" element={<Error />} />{/* on precise un path dans la "Routes" en dernier  contrairement a l utilisation de switch de la v6*/}
+            </Routes >
+          </main>
+          <Footer />
+        </ThemeProvider>
       </App>
     </Router>
   </React.StrictMode>

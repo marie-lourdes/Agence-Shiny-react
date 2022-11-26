@@ -1,5 +1,8 @@
+//import de useState 
 //import contexte natif de React
-import { createContext } from "react";
+import { createContext, useState } from 'react'
+
+
 
 // initialisation du composant Contexte
 export const ThemeContext = createContext()

@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { StyledLink } from "../../bases-styled/atoms/Link.js"
+import { StyledLink } from "../../bases/atoms/Link.js"
 import colors from "../../utils/color.js"
 
 const HomeWrapper = styled.section`
