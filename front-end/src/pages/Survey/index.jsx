@@ -1,8 +1,11 @@
 import { Link, useParams } from "react-router-dom"
-import { useState, useEffect, useContext } from 'react'
+import { useContext } from 'react'
 import { Loader, Spinner } from "../../utils/Loader"
 //import du SurveyContext
 import { SurveyContext } from '../../utils/Context'
+
+//import du hook-custom useFetch
+import { useFetch } from "../../utils/hooks-custom/useFetch.js"
 
 // styled component
 import { SurveyContainer, QuestionTitle, QuestionContent, ReplyBox, ReplyWrapper, LinkWrapper } from "./Survey.js"
@@ -12,12 +15,9 @@ function Survey() {
     const { questionNumber } = useParams()
     const questionNumberInt = parseInt(questionNumber);
     // la condition empeche d aller à zero, sera egale a 1 si c est sur un sion incremente
-    const prev = questionNumberInt === 1 ? 1 : questionNumber - 1
+    const prev = questionNumberInt === 1 ? 1 : questionNumberInt - 1
     const next = questionNumberInt + 1
 
-    const [surveyData, setSurveyData] = useState({})
-    const [isLoading, setIsLoading] = useState(false)// par defaut on met le state is loading a false 
-    const [isError, setError] = useState(null)
     //Import state de surveyContext de surveyProvider
     const { answers, saveAnswers } = useContext(SurveyContext)
 
@@ -57,28 +57,17 @@ function Survey() {
         saveAnswers({ [questionNumber]: answer })// creation de la propriété entre bracket avec le numero de la question qui est le parametre de requete
     }
 
-    // apres le premier render (uniquement) du composant dont le state est vide,
-    //useEffet execute la requête avec fetch qui met a jour le state avec les données requêté sur l api,
-    //le composant est re-render avce le state mis a jour mais useEffect n execute plus la requete apres,
-    // malgré le re-render de mise a jour du state grace  au tableau vide
-    useEffect(() => {
-        // delimite le debut du chargement des donnés ce qui evite les moment de blanc qui affichera a la place un loader dans le render du composant
-        // avant la mise a jour du state avec les données de l api
-        setIsLoading(true)
-        fetch(`http://localhost:8000/survey`)
-            .then((response) => response.json())
-            .then(({ surveyData }) => { // on recupere l 'objet nommé surveyData dans l objet de la reponse
-                console.log("data surveydata", surveyData)
-                setSurveyData(surveyData)
-                setIsLoading(false)
+    // recuperation par destructuration des states (de l objet retourné par le hook useFetch) mise a jour par fetch dans le hook useFetch avec useEffect sur chaque modification d url
+    const { isLoading, datas, isError } = useFetch(`http://localhost:8000/survey`);
+    //recuperation de la propriété surveyData dans la data recupéré par useFetch
+    console.log("data set datas", datas)
 
-            })
-            .catch((error) => {
-                setError(true)
-                console.log("erreur requete", error)
-            })
+    const { surveyData } = datas
+    console.log("surveydata = data", surveyData)
 
-    }, [])
+    // gestion de l erreur de requete de catch de la methode fetch dans le hook useFetch et affichage pour prevenir l utilisateur qu il y a eu un probleme
+    if (isError) return <div> Une erreur est survenue</div>
+
 
     return <section>
         <h1> Questionnaire</h1>
@@ -95,8 +84,9 @@ function Survey() {
                     <Spinner className="spinner3" />
                     <Spinner className="spinner4" />
                 </Loader> :
-                <QuestionContent>{surveyData[questionNumber]}</QuestionContent>
-            }
+                <QuestionContent>{surveyData && surveyData[questionNumber]}</QuestionContent>}
+            {/* recuperation de la propriete de suveyData avec le param uri de /survey/: questionNumber*/}
+
 
             {/* on met a jour le state answer du SurveyProvider a true ou false*/}
             <ReplyWrapper>
@@ -116,13 +106,22 @@ function Survey() {
 
             <LinkWrapper>
                 <Link to={`/survey/${prev}`}>Précédent</Link>
-                {/*on verifie si la question suivante contient une valeur, si ce n est pas le cas on redirige vers la page resultat*/}
-                {surveyData[questionNumberInt + 1] ? (
+                {surveyData && surveyData[questionNumberInt + 1] ? (
                     <Link to={`/survey/${next}`}>Suivant</Link>
                 ) : (
                     <Link to="/results">Résultats</Link>
                 )}
             </LinkWrapper>
+
+            {/* <LinkWrapper>
+                <Link to={`/survey/${prev}`}>Précédent</Link>
+                {/*on verifie si la question suivante contient une valeur, si ce n est pas le cas on redirige vers la page resultat
+                {surveyData[questionNumberInt + 1] ? (
+                    <Link to={`/survey/${next}`}>Suivant</Link>
+                ) : (
+                    <Link to="/results">Résultats</Link>
+                )}
+            </LinkWrapper>*/}
         </SurveyContainer>
     </section>
 
