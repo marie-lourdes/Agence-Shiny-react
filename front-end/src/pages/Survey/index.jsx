@@ -1,8 +1,11 @@
 import { Link, useParams } from "react-router-dom"
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { Loader, Spinner } from "../../utils/Loader"
+//import du SurveyContext
+import { SurveyContext } from '../../utils/Context'
+
 // styled component
-import { SurveyContainer, QuestionTitle, QuestionContent, LinkWrapper } from "./Survey.js"
+import { SurveyContainer, QuestionTitle, QuestionContent, ReplyBox, ReplyWrapper, LinkWrapper } from "./Survey.js"
 
 function Survey() {
 
@@ -14,6 +17,9 @@ function Survey() {
 
     const [surveyData, setSurveyData] = useState({})
     const [isLoading, setIsLoading] = useState(false)// par defaut on met le state is loading a false 
+    const [isError, setError] = useState(null)
+    //Import state de surveyContext de surveyProvider
+    const { answers, saveAnswers } = useContext(SurveyContext)
 
     //GESTION DE L ERREUR DE LA REQUETE
     //  const [isError, setIsError] = useState(null)
@@ -46,6 +52,11 @@ function Survey() {
     // }, [] )
 
 
+    // création de la fonction qui met a jour le state answer au click du bouton sur la reponse
+    function saveReply(answer) {
+        saveAnswers({ [questionNumber]: answer })// creation de la propriété entre bracket avec le numero de la question qui est le parametre de requete
+    }
+
     // apres le premier render (uniquement) du composant dont le state est vide,
     //useEffet execute la requête avec fetch qui met a jour le state avec les données requêté sur l api,
     //le composant est re-render avce le state mis a jour mais useEffect n execute plus la requete apres,
@@ -62,7 +73,10 @@ function Survey() {
                 setIsLoading(false)
 
             })
-            .catch((error) => console.log("erreur requete", error))
+            .catch((error) => {
+                setError(true)
+                console.log("erreur requete", error)
+            })
 
     }, [])
 
@@ -81,7 +95,24 @@ function Survey() {
                     <Spinner className="spinner3" />
                     <Spinner className="spinner4" />
                 </Loader> :
-                <QuestionContent>{surveyData[questionNumber]}</QuestionContent>}
+                <QuestionContent>{surveyData[questionNumber]}</QuestionContent>
+            }
+
+            {/* on met a jour le state answer du SurveyProvider a true ou false*/}
+            <ReplyWrapper>
+                <ReplyBox
+                    onClick={() => saveReply(true)}
+                    isSelected={answers[questionNumber] === true}
+                >
+                    Oui
+                </ReplyBox>
+                <ReplyBox
+                    onClick={() => saveReply(false)}
+                    isSelected={answers[questionNumber] === false}
+                >
+                    Non
+                </ReplyBox>
+            </ReplyWrapper>
 
             <LinkWrapper>
                 <Link to={`/survey/${prev}`}>Précédent</Link>

@@ -16,6 +16,30 @@ const QuestionContent = styled.span`
   margin: 30px;
 `
 
+const ReplyBox = styled.button`
+  border: none;
+  height: 100px;
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${colors.backgroundLight};
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: ${(props) =>
+    props.isSelected ? `0px 0px 0px 2px ${colors.primary} inset ` : 'none'};
+  &:first-child {
+    margin-right: 15px;
+  }
+  &:last-of-type {
+    margin-left: 15px;
+  }
+`
+const ReplyWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`
+
 const LinkWrapper = styled.div`
   padding-top: 30px;
   & a {
@@ -26,4 +50,4 @@ const LinkWrapper = styled.div`
   }
 `
 
-export { SurveyContainer, QuestionTitle, QuestionContent, LinkWrapper }
+export { SurveyContainer, QuestionTitle, QuestionContent, ReplyBox, ReplyWrapper, LinkWrapper }
