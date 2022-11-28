@@ -15,7 +15,9 @@ Function aync :
 Une fonction qui permet d'utiliser des instructions asynchrone avec le mot clé await, ce qui bloquera l'execution du code tant que la Promesse après laquelle le mot cléawaitse trouve n'aura pas résolu…
 Cette fonction va également retourner une Promesse, peu importe si l'on a explicitement retourné quelque chose ou non( lobjet vide de useState). Dans le cas où l'on retourne une donnée,
 elle sera enveloppée dans le contenu de resolution de la Promese que la fonction va créer et retourner automatiquement.
-On apelle directement la fonction async  sans callBack en parametre de la fonction asynchrone*/
+On apelle directement la fonction async  sans callBack en parametre de la fonction asynchrone
+Une fonction async peut contenir une expression await qui interrompt l'exécution de la fonction asynchrone et attend la résolution de la promesse passée Promise. 
+La fonction asynchrone reprend ensuite puis renvoie la valeur de résolution.*/
 export function useFetch(url) {
     const [data, setData] = useState({})
     const [isLoading, setLoading] = useState(true)
