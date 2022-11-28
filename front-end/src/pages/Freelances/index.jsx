@@ -1,6 +1,6 @@
 //import du compisant react Card
 import React from "react"
-import { useState, useEffect } from 'react'
+
 import Card from "../../components/Card"
 import { Loader, Spinner } from "../../utils/Loader"
 
@@ -30,33 +30,16 @@ const freelanceProfiles = [
 
 function Freelances() {
 
-    /* const [profilData, setProfilData] = useState([])
-     const [isLoading, setIsLoading] = useState(false)
-     const [errors, setError] = useState(null)
- 
-     useEffect(() => {
-         setIsLoading(true)
-         fetch("http://localhost:8000/freelances")
-             .then((res) => {
-                 console.log("reponse", res)
-                 return res.json()
-             })
-             .then(({ freelancersList }) => {
-                 console.log("profilData", freelancersList)
-                 setProfilData(freelancersList)
-                 setIsLoading(false)
-             })
-             .catch((error) => {
-                 console.log("erreur requete", error)
-                 setError(true)
-             })
-     }, [])*/
 
-    const { isLoading, datas, isError } = useFetch(`http://localhost:8000/freelances`);
-    const freelancersListe = datas?.freelancersList
+    const { isLoading, datas, error } = useFetch(`http://localhost:8000/freelances`)
+    const freelancersList = datas?.freelancersList
+    console.log("data", datas)
 
-    console.log("profldata", datas)
-    if (isError) return <div className="error"> Une erreur est survenue...</div>
+    console.log("profldata", freelancersList)
+    if (error) {
+        return <div className="error"> Une erreur est survenue...</div>
+
+    }
 
     return (<React.Fragment>
         <section>
@@ -66,15 +49,16 @@ function Freelances() {
             <PageSubtitle>
                 Chez Shiny nous réunissons les meilleurs profils pour vous.
             </PageSubtitle>
-            {isLoading ?
+            {isLoading ? (
                 <Loader className="loader-freelances">
                     <Spinner className="spinner1" />
                     <Spinner className="spinner2" />
                     <Spinner className="spinner3" />
                     <Spinner className="spinner4" />
-                </Loader> :
+                </Loader>
+            ) : (
                 <CardContainer>
-                    {freelancersListe.map((profile) =>
+                    {freelancersList.map((profile) =>
                         <Card
                             key={`${profile.id}`}// definition des key pour les liste de données profiles, a chaque generation de l element courant profile
                             label={profile.job}
@@ -82,9 +66,10 @@ function Freelances() {
                             title={profile.name}
                             picture={profile.picture}
                         />
+
                     )}
                 </CardContainer>
-            }
+            )}
         </section>
 
     </React.Fragment>
@@ -92,3 +77,25 @@ function Freelances() {
 }
 
 export default Freelances
+
+/* const [profilData, setProfilData] = useState([])
+ const [isLoading, setIsLoading] = useState(false)
+ const [errors, setError] = useState(null)
+ 
+ useEffect(() => {
+     setIsLoading(true)
+     fetch("http://localhost:8000/freelances")
+         .then((res) => {
+             console.log("reponse", res)
+             return res.json()
+         })
+         .then(({ freelancersList }) => {
+             console.log("profilData", freelancersList)
+             setProfilData(freelancersList)
+             setIsLoading(false)
+         })
+         .catch((error) => {
+             console.log("erreur requete", error)
+             setError(true)
+         })
+ }, [])*/

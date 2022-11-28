@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 export function useFetch(url) {
     const [isLoading, setIsLoading] = useState(false)// par defaut on met le state is loading a false 
     const [datas, setData] = useState({})
-    const [isError, setError] = useState(false)
+    const [error, setError] = useState(false)
 
     // apres le premier render (uniquement) du composant dont le state est vide,
     //useEffet execute la requête avec fetch qui met a jour le state avec les données requêté sur l api,
@@ -19,7 +19,7 @@ export function useFetch(url) {
         // avant la mise a jour du state avec les données de l api
         setIsLoading(true)
 
-        {/* avec l enchainement des promesses then qui recuperes les promesses resolu , non resolu, pending ci-dessous la requete ne fonctionné pas avec le hook useFetch 
+        /* avec l enchainement des promesses then qui recuperes les promesses resolu , non resolu, pending ci-dessous la requete ne fonctionné pas avec le hook useFetch 
  et tout partculierement le useEffect qui ne tolere pas les fonctions asynchrone mais si on apelle directement la fonction asynchrone a l interieur ca fonctionne 
 Utiliser une async fonction fait retourner à la fonction de retour une Promesse au lieu d'une fonction de nettoyage.
 React n'attends pas une Promesse mais une fonction.
@@ -28,7 +28,7 @@ Une fonction qui permet d'utiliser des instructions asynchrone avec le mot clé 
 Cette fonction va également retourner une Promesse, peu importe si l'on a explicitement retourné quelque chose ou non( lobjet vide de useState). Dans le cas où l'on retourne une donnée,
  elle sera enveloppée dans le contenu de resolution de la Promese que la fonction va créer et retourner automatiquement.
  On apelle directement la fonction async  sans callBack en parametre de la fonction asynchrone
-*/}
+*/
         async function fetchData() {
             try {
 
@@ -56,7 +56,7 @@ Cette fonction va également retourner une Promesse, peu importe si l'on a expli
     // le useEffect se declenche a chaque changement d url avec le tableau de dependance
 
     // le hook useFetch retourne un objet les states
-    return { isLoading, datas, isError }
+    return { isLoading, datas, error }
 
 }
 
