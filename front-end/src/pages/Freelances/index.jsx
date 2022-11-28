@@ -34,7 +34,7 @@ function Freelances() {
     const { isLoading, data, error } = useFetch(`http://localhost:8000/freelances`);
 
     const freelancersListe = data?.freelancersList
-    console.log("data", data?.freelancersList)
+    console.log("data", data)
 
 
 
