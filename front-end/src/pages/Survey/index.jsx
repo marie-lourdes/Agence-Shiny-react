@@ -56,7 +56,7 @@ function Survey() {
                     <Spinner className="spinner3" />
                     <Spinner className="spinner4" />
                 </Loader> :
-                <QuestionContent>{surveyData && surveyData[questionNumber]}</QuestionContent>}
+                <QuestionContent theme={theme}>{surveyData && surveyData[questionNumber]}</QuestionContent>}
             {/* recuperation de la propriete de suveyData avec le param uri de /survey/: questionNumber*/}
 
 
