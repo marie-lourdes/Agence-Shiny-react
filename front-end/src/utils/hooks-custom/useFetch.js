@@ -1,6 +1,32 @@
 import { useState, useEffect } from 'react'
 
+
 export function useFetch(url) {
+    const [data, setData] = useState({})
+    const [isLoading, setLoading] = useState(true)
+    const [error, setError] = useState(false)
+
+    useEffect(() => {
+        if (!url) return
+        setLoading(true)
+        async function fetchData() {
+            try {
+                const response = await fetch(url)
+                const data = await response.json()
+                setData(data)
+            } catch (err) {
+                console.log(err)
+                setError(true)
+            } finally {
+                setLoading(false)
+            }
+        }
+        fetchData()
+    }, [url])
+    return { isLoading, data, error }
+}
+
+/*export function useFetch(url) {
     const [isLoading, setIsLoading] = useState(false)// par defaut on met le state is loading a false 
     const [datas, setData] = useState({})
     const [error, setError] = useState(false)
@@ -28,7 +54,7 @@ Une fonction qui permet d'utiliser des instructions asynchrone avec le mot clé 
 Cette fonction va également retourner une Promesse, peu importe si l'on a explicitement retourné quelque chose ou non( lobjet vide de useState). Dans le cas où l'on retourne une donnée,
  elle sera enveloppée dans le contenu de resolution de la Promese que la fonction va créer et retourner automatiquement.
  On apelle directement la fonction async  sans callBack en parametre de la fonction asynchrone
-*/
+
         async function fetchData() {
             try {
 

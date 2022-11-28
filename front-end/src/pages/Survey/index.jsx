@@ -58,11 +58,11 @@ function Survey() {
     }
 
     // recuperation par destructuration des states (de l objet retourné par le hook useFetch) mise a jour par fetch dans le hook useFetch avec useEffect sur chaque modification d url
-    const { isLoading, datas, error } = useFetch(`http://localhost:8000/surve`);
+    const { isLoading, data, error } = useFetch(`http://localhost:8000/survey`);
     //recuperation de la propriété surveyData dans la data recupéré par useFetch
-    console.log("data set datas", datas)
+    console.log("data set datas", data)
 
-    const { surveyData } = datas
+    const { surveyData } = data
     console.log("surveydata = data", surveyData)
 
     // gestion de l erreur de requete de catch de la methode fetch dans le hook useFetch et affichage pour prevenir l utilisateur qu il y a eu un probleme

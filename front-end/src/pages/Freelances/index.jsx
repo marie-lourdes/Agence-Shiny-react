@@ -4,10 +4,12 @@ import React from "react"
 import Card from "../../components/Card"
 import { Loader, Spinner } from "../../utils/Loader"
 
-import { useFetch } from "../../utils/hooks-custom/useFetch.js"
 
 //import du styled component
 import { CardContainer, PageSubtitle, PageTitle } from "./Freelances.js"
+
+
+import { useFetch } from "../../utils/hooks-custom/useFetch.js"
 
 /* definition d une liste de données de profils
 const freelanceProfiles = [
@@ -29,13 +31,14 @@ const freelanceProfiles = [
 ] */
 
 function Freelances() {
+    const { isLoading, data, error } = useFetch(`http://localhost:8000/freelances`);
+
+    const freelancersListe = data?.freelancersList
+    console.log("data", data?.freelancersList)
 
 
-    const { isLoading, datas, error } = useFetch(`http://localhost:8000/freelances`)
-    const freelancersList = datas?.freelancersList
-    console.log("data", datas)
 
-    console.log("profldata", freelancersList)
+    console.log("profldata", freelancersListe)
     if (error) {
         return <div className="error"> Une erreur est survenue...</div>
 
@@ -58,7 +61,7 @@ function Freelances() {
                 </Loader>
             ) : (
                 <CardContainer>
-                    {freelancersList.map((profile) =>
+                    {freelancersListe.map((profile) =>
                         <Card
                             key={`${profile.id}`}// definition des key pour les liste de données profiles, a chaque generation de l element courant profile
                             label={profile.job}
