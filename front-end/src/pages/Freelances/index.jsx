@@ -10,6 +10,7 @@ import { CardContainer, PageSubtitle, PageTitle } from "./Freelances.js"
 
 
 import { useFetch } from "../../utils/hooks-custom/useFetch.js"
+import { useTheme } from "../../utils/hooks-custom/useTheme.js"
 
 /* definition d une liste de données de profils
 const freelanceProfiles = [
@@ -36,6 +37,7 @@ function Freelances() {
     const freelancersListe = data?.freelancersList
     console.log("data", data)
 
+    const { theme } = useTheme()
 
 
     console.log("profldata", freelancersListe)
@@ -48,7 +50,7 @@ function Freelances() {
         <section>
             <h1>Freelances </h1>
 
-            <PageTitle>Trouvez votre prestataire</PageTitle>
+            <PageTitle theme={theme}>Trouvez votre prestataire</PageTitle>
             <PageSubtitle>
                 Chez Shiny nous réunissons les meilleurs profils pour vous.
             </PageSubtitle>
@@ -60,7 +62,7 @@ function Freelances() {
                     <Spinner className="spinner4" />
                 </Loader>
             ) : (
-                <CardContainer>
+                <CardContainer >
                     {freelancersListe.map((profile) =>
                         <Card
                             key={`${profile.id}`}// definition des key pour les liste de données profiles, a chaque generation de l element courant profile

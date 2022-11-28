@@ -11,11 +11,12 @@ justify-items: center;
 max-width: 800px;
 margin: 0 auto;
 
+
  
 `
 const PageTitle = styled.h2`
 font-size: 30px;
-color: black;
+color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
 text-align: center;
 padding-bottom: 30px;
 `
